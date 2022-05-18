@@ -32,6 +32,7 @@ header input {
     border: none;
     border-radius: 3px;
     padding: 0.5rem 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 header button {
     background-color: transparent;
@@ -41,7 +42,7 @@ header button {
     margin-left: 10px;
 }
 .fav-container {
-    padding: 1rem;
+    padding: 0.25rem 1rem;
     text-align: center;
     background-color: plum;
 }
