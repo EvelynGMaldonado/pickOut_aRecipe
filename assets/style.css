@@ -58,6 +58,7 @@ header button {
     position: relative;
     margin: 5px;
     width: 85px;
+    cursor: pointer;
 }
 
 .fav-meals li .delete {
@@ -98,6 +99,7 @@ header button {
     box-shadow: 0 0 10px 2px #3333331A;
     margin:1.5rem;
     overflow: hidden;
+    cursor: pointer;
 }
 .meal-header {
     position: relative;
@@ -133,4 +135,47 @@ header button {
 }
 .meal-body .fav-btn .active {
     color:red;
+}
+.recipe-info-container{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 2rem;
+}
+.recipe-info-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.recipe-instructions{
+    background-color: #fff;
+    max-width: 600px;
+    width: 100%;
+    padding: 0 2rem;
+    border-radius: 15px;
+    position: relative;
+    overflow: auto;
+    max-height: 100vh;
+}
+.recipe-instructions h4 {
+    text-align: center;
+}
+
+.recipe-instructions .close {
+    background-color: transparent;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    border: none;
+    /* font-size: 1rem; */
+    /* opacity: 0; */
+    height: 20px;
+    width: 20px;
+    /* cursor: pointer; */
 }

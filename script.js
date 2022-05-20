@@ -1,8 +1,12 @@
 //declare variables
 const meals = document.getElementById("meals");
+const recipeWindow = document.getElementById("pop-window");
+const displayRecipe = document.getElementById("display-recipe");
 const favoriteGroup = document.getElementById("fav-meals");
 const searchWord = document.getElementById("search-word");
 const searchBtn = document.getElementById("search");
+const closeBtn = document.getElementById("close");
+
 
 getRandomMeal();
 favoriteMeals();
@@ -70,6 +74,10 @@ function addMeal(mealData, random = false) {
 
     });
 
+    meal.addEventListener("click", () => {
+        displayRecipeInfo(mealData);
+    });
+
     meals.appendChild(meal);
 }
 
@@ -121,7 +129,26 @@ function addMealToFavorites(mealData) {
         removeFavoritesFromLocalStorage(mealData.idMeal);
         favoriteMeals();
     });
+    favoriteMeal.addEventListener("click", () => {
+        displayRecipeInfo(mealData);
+    });
+
     favoriteGroup.appendChild(favoriteMeal);
+}
+
+function displayRecipeInfo(mealData){
+    displayRecipe.innerHTML = "";
+    const recipeFullInfo = document.createElement("div");
+    recipeFullInfo.innerHTML = `
+        <h4>${mealData.strMeal}</h4>
+        <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" style="">
+        <p>${mealData.strInstructions}</p>
+        <ul>
+            <li>ingredients</li>
+        </ul>
+    `
+    displayRecipe.appendChild(recipeFullInfo);
+    recipeWindow.classList.remove("hidden");
 }
 
 searchBtn.addEventListener("click", async() => {
@@ -136,3 +163,7 @@ searchBtn.addEventListener("click", async() => {
         });
     }
 });
+
+closeBtn.addEventListener("click", () => {
+    recipeWindow.classList.add("hidden");
+})
