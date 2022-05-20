@@ -21,6 +21,7 @@ async function getMealBySearch(name) {
 }
 
 function addMeal(mealData, random = false) {
+    console.log("mealData: ", mealData);
     const meal = document.createElement("div");
     meal.classList.add("meal");
     meal.innerHTML = `
@@ -35,15 +36,42 @@ function addMeal(mealData, random = false) {
         <div class="meal-body">
             <h4>${mealData.strMeal}</h4>
             <button class="fav-btn">
-                <image class="fav-btn active" src="./assets/suit-heart-fill.svg"></image>
+                <img class="fav-btn" src="./assets/heart.svg"></img>
             </button>
         </div>
     `;
 
     //event listener to mark favorite meals by clicking the herart button
-    meal.querySelector(".meal-body .fav-btn").addEventListener("click", () => {
+    const likebtn = meal.querySelector(".meal-body .fav-btn");
+    likebtn.addEventListener("click", () => {
+        if(likebtn.classList.contains("active")) {
+            removeFavoritesFromLocalStorage(mealData.idMeal);
+            likebtn.classList.remove("active");
+        } else {
+            addFavoritesToLocalStorage(mealData.idMeal);
+            likebtn.classList.add("active");
+        }
+        // likebtn.classList.toggle("active");
         alert(`${mealData.strMeal} is now part of your favorite meals`);
+
     });
 
     meals.appendChild(meal);
+}
+
+function addFavoritesToLocalStorage(favmeal) {
+    const mealID = getFavoritesFromLocalStorage();
+    localStorage.setItem("mealid", JSON.stringify([...mealID, favmeal]));
+
+}
+
+function removeFavoritesFromLocalStorage(favmeal) {
+    const mealID = getFavoritesFromLocalStorage();
+    localStorage.setItem("mealid", JSON.stringify(mealID.filter(id => id !== favmeal)));
+}
+
+function getFavoritesFromLocalStorage() {
+    //we get item by key("mealid") from local storage.  
+    const mealID = JSON.parse(localStorage.getItem("mealid"));
+    return mealID === null ? [] : mealID;
 }
