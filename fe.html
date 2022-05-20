@@ -15,29 +15,43 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href= "https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple">
-    <link rel="stylesheet" href="./assets/style.css"/>
+    <link rel="stylesheet" href="./assets/fe.css"/>
     <title>Recipes</title>
 </head>
 <body>
-    <div class="mobile-container">
-        <header>
-            <input type="text" id="search-word"/>
-            <button id="search"><img src="./assets/search.svg"></button>
-        </header>
-        <div class="fav-container" >
-            <h3>Favorite Meals</h3>
-            <ul class="fav-meals" id="fav-meals">
-            </ul>
+    <div class="container">
+        <div class="jumbotron" style="background-color: transparent; margin: 0;">
+            <h1 class="display-4" style="text-align: center;">Recipe Pick Out</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p style="text-align: center;">It uses utility classes for typography and spacing to space content out within the larger container.</p>
         </div>
-        <div class="meals" id="meals">
-        </div>
-        <div class="recipe-info-container hidden" id="pop-window">
-            <div class="recipe-instructions" id="recipe-instructions">
-                <button class="close" id="close"><img class="close" alt="" src="./assets/x-circle.svg"></button>
-                <div class="display-recipe" id="display-recipe">
-                    
+        <form >
+            <div class="form-row align-items-center">
+                <div class="col mr-lg-5 ml-lg-5">
+                    <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><button id="search"><img src="./assets/search.svg"></button></div>
+                        </div>
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Find a recipe by name">
+                    </div>
+                </div>
+                <div class="col mr-lg-5 ml-lg-5">
+                    <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><button id="maps"><img src="./assets/search.svg"></button></div>
+                        </div>
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Find a restaurant">
+                    </div>
                 </div>
             </div>
+        </form>
+        <div class="fav-container mt-lg-5" >
+            <h5>My favorites</h5>
+            <ul class="fav-meals" id="fav-meals">
+            </ul>
         </div>
     </div>
     <script src="./script.js"></script>
