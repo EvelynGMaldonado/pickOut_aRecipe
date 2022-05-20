@@ -121,14 +121,13 @@ function addMealToFavorites(mealData) {
         <span>
         ${mealData.strMeal}
         </span>
-        <button class="delete"><img class="delete" alt="" src="./assets/x-circle.svg"></button>
         `;
     
-    const deleteBtn = favoriteMeal.querySelector(".delete");
-    deleteBtn.addEventListener("click", () => {
-        removeFavoritesFromLocalStorage(mealData.idMeal);
-        favoriteMeals();
-    });
+    // const deleteBtn = favoriteMeal.querySelector(".delete");
+    // deleteBtn.addEventListener("click", () => {
+    //     removeFavoritesFromLocalStorage(mealData.idMeal);
+    //     favoriteMeals();
+    // });
     favoriteMeal.addEventListener("click", () => {
         displayRecipeInfo(mealData);
     });
@@ -140,6 +139,8 @@ function displayRecipeInfo(mealData){
     displayRecipe.innerHTML = "";
     const recipeFullInfo = document.createElement("div");
     const ingredientsList = [];
+    
+    
 
     //get the ingredients and measures
     for(let i = 1; i <= 20; i++) {
@@ -166,10 +167,28 @@ function displayRecipeInfo(mealData){
                 <li>${ing}</li> `
             ).join("")}
         </ul>
+        <br>
+        <button class="add">Add to Favorites</button>
+        <button class="delete">Delete from favorites</button>
     `;
+
 
     displayRecipe.appendChild(recipeFullInfo);
     recipeWindow.classList.remove("hidden");
+    
+    const deleteBtn = recipeFullInfo.querySelector(".delete");
+    deleteBtn.addEventListener("click", () => {
+        removeFavoritesFromLocalStorage(mealData.idMeal);
+        favoriteMeals();
+        recipeWindow.classList.add("hidden");
+    });
+    const addBtn = recipeFullInfo.querySelector(".add");
+    addBtn.addEventListener("click", ()=> {
+        addFavoritesToLocalStorage(mealData.idMeal);
+        favoriteMeals();
+        recipeWindow.classList.add("hidden");
+    })
+    
 }
 
 searchBtn.addEventListener("click", async() => {
