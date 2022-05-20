@@ -47,12 +47,14 @@ function addMeal(mealData, random = false) {
         if(likebtn.classList.contains("active")) {
             removeFavoritesFromLocalStorage(mealData.idMeal);
             likebtn.classList.remove("active");
+            alert(`Deleting ${mealData.strMeal} from your favorite meals`);
         } else {
             addFavoritesToLocalStorage(mealData.idMeal);
             likebtn.classList.add("active");
+            alert(`${mealData.strMeal} is now part of your favorite meals`);
         }
         // likebtn.classList.toggle("active");
-        alert(`${mealData.strMeal} is now part of your favorite meals`);
+        
 
     });
 
