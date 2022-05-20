@@ -139,14 +139,35 @@ function addMealToFavorites(mealData) {
 function displayRecipeInfo(mealData){
     displayRecipe.innerHTML = "";
     const recipeFullInfo = document.createElement("div");
+    const ingredientsList = [];
+
+    //get the ingredients and measures
+    for(let i = 1; i <= 20; i++) {
+        if(mealData["strIngredient" + i]) {
+            ingredientsList.push(`
+            <strong> 
+                ${mealData["strIngredient" + i]} : 
+            </strong> 
+            ${mealData["strMeasure" + i]}
+            `)
+        } else {
+            break;
+        }
+        // console.log("myIngredients: ", ingredientsList);
+    };
+
     recipeFullInfo.innerHTML = `
-        <h4>${mealData.strMeal}</h4>
+        <h3><strong>${mealData.strMeal}</strong></h3>
         <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" style="">
         <p>${mealData.strInstructions}</p>
+        <h5><strong> Ingredients & Measures </strong></h5>
         <ul>
-            <li>ingredients</li>
+            ${ingredientsList.map((ing) => `
+                <li>${ing}</li> `
+            ).join("")}
         </ul>
-    `
+    `;
+
     displayRecipe.appendChild(recipeFullInfo);
     recipeWindow.classList.remove("hidden");
 }

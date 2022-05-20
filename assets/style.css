@@ -163,7 +163,7 @@ header button {
     overflow: auto;
     max-height: 100vh;
 }
-.recipe-instructions h4 {
+.recipe-instructions h3 {
     text-align: center;
 }
 
