@@ -34,7 +34,16 @@ header input {
     padding: 0.5rem 1rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-header button {
+.empty {
+    src: "heart.svg";
+    background-color: transparent;
+    color: #aaa;
+    border:none;
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+.full {
+    src: "suit-heart-full.svg";
     background-color: transparent;
     color: #aaa;
     border:none;
@@ -133,8 +142,15 @@ header button {
     color:gray;
     cursor: pointer;
 }
+
 .meal-body .fav-btn .active {
     color:red;
+}
+#search {
+    background-color: transparent;
+    border:none;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 .recipe-info-container{
     position: fixed;
@@ -150,6 +166,10 @@ header button {
     padding: 2rem;
 }
 .recipe-info-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.hidden {
     opacity: 0;
     pointer-events: none;
 }

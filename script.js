@@ -19,20 +19,20 @@ async function getRandomMeal() {
     console.log(randomMeal);
 
     addMeal(randomMeal, true);
-}
+};
 
 async function getMealById(id) {
     const respById = await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id);
     const respByIdData = await respById.json();
     const mealById = respByIdData.meals[0];
     return mealById;
-}
+};
 async function getMealBySearch(name) {
     const respByName = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + name);
     const respByNameData = await respByName.json();
     const mealByName = respByNameData.meals;
     return mealByName;
-}
+};
 
 function addMeal(mealData, random = false) {
     console.log("mealData: ", mealData);
@@ -50,53 +50,59 @@ function addMeal(mealData, random = false) {
         <div class="meal-body">
             <h4>${mealData.strMeal}</h4>
             <button class="fav-btn">
-                <img class="fav-btn" src="./assets/heart.svg"></img>
+                <img class="empty" src=""></img>
+                
             </button>
         </div>
     `;
 
     //event listener to mark favorite meals by clicking the herart button
-    const likebtn = meal.querySelector(".meal-body .fav-btn");
-    likebtn.addEventListener("click", () => {
-        if(likebtn.classList.contains("active")) {
-            removeFavoritesFromLocalStorage(mealData.idMeal);
-            likebtn.classList.remove("active");
-            alert(`Deleting ${mealData.strMeal} from your favorite meals`);
-        } else {
-            addFavoritesToLocalStorage(mealData.idMeal);
-            likebtn.classList.add("active");
-            alert(`${mealData.strMeal} is now part of your favorite meals`);
-        }
-        // likebtn.classList.toggle("active");
+    // const likebtn = meal.querySelector(".meal-body .fav-btn");
+    // likebtn.addEventListener("click", () => {
+    //     if(likebtn.innerHTML= `<img class="empty" src="./assets/heart.svg"></img>`) {
+    //         addFavoritesToLocalStorage(mealData.idMeal);
+    //         likebtn.classList.remove("empty")
+    //         likebtn.classList.add("hidden");
+    //         likebtn.innerHTML= `<img class="full" src="./assets/suit-heart-fill.svg"></img>`;
+    //         alert(`${mealData.strMeal} is now part of your favorite meals`);
+            
+    //     } else {
+    //         removeFavoritesFromLocalStorage(mealData.idMeal);
+    //         likebtn.classList.remove("full")
+    //         likebtn.classList.add("hidden");
+    //         likebtn.innerHTML= `<img class="empty" src="./assets/heart.svg"></img>`;
+    //         alert(`Deleting ${mealData.strMeal} from your favorite meals`);
+    //     }
+    //     // likebtn.classList.toggle("active");
         
-        favoriteMeals();
+    //     favoriteMeals();
         
 
-    });
+    // });
 
     meal.addEventListener("click", () => {
         displayRecipeInfo(mealData);
     });
 
     meals.appendChild(meal);
-}
+};
 
 function addFavoritesToLocalStorage(favmeal) {
     const mealID = getFavoritesFromLocalStorage();
     localStorage.setItem("mealid", JSON.stringify([...mealID, favmeal]));
 
-}
+};
 
 function removeFavoritesFromLocalStorage(favmeal) {
     const mealID = getFavoritesFromLocalStorage();
     localStorage.setItem("mealid", JSON.stringify(mealID.filter(id => id !== favmeal)));
-}
+};
 
 function getFavoritesFromLocalStorage() {
     //we get item by key("mealid") from local storage.  
     const mealID = JSON.parse(localStorage.getItem("mealid"));
     return mealID === null ? [] : mealID;
-}
+};
 
 async function favoriteMeals() {
     favoriteGroup.innerHTML = "";
@@ -111,7 +117,7 @@ async function favoriteMeals() {
     // console.log("favMealsGroup: ", favMealsGroup);
 
     //display meals in the browser
-}
+};
 
 function addMealToFavorites(mealData) {
     console.log("mealData on addMealFavorites: ", mealData);
@@ -133,7 +139,7 @@ function addMealToFavorites(mealData) {
     });
 
     favoriteGroup.appendChild(favoriteMeal);
-}
+};
 
 function displayRecipeInfo(mealData){
     displayRecipe.innerHTML = "";
@@ -189,7 +195,7 @@ function displayRecipeInfo(mealData){
         recipeWindow.classList.add("hidden");
     })
     
-}
+};
 
 searchBtn.addEventListener("click", async() => {
     meals.innerHTML="";
@@ -206,4 +212,4 @@ searchBtn.addEventListener("click", async() => {
 
 closeBtn.addEventListener("click", () => {
     recipeWindow.classList.add("hidden");
-})
+});
