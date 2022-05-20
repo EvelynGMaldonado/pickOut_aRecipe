@@ -52,6 +52,104 @@
     text-overflow: ellipsis;
     width: 75px;
 }
+.meal {
+    border-radius: 3px;;
+    box-shadow: 0 0 10px 2px #3333331A;
+    /* margin-left: 25% !important;
+    margin-right: 25% !important; */
+    overflow: hidden;
+    cursor: pointer;
+    width:100%;  
+    /* position: relative; */
+}
+.meal-header {
+    position: relative;
+}
+.meal-header .random {
+    position: absolute;
+    top: 1remx;
+    background-color: #fff;
+    padding: 0.25rem 1rem;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    display: none;
+}
+.meal-header img {
+    /* height: 250px; */
+    width: 100%;
+    object-fit: cover;
+    max-height: 100vh;
+    height: auto;
+}
+.meal-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.meal-body h4 {
+    margin: 0;
+}
+.meal-body .fav-btn {
+    background-color: transparent;
+    border:none;
+    font-size: 1.2rem;
+    color:gray;
+    cursor: pointer;
+}
+
+.meal-body .fav-btn .active {
+    color:red;
+}
+
+.recipe-info-container{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 2rem;
+}
+.recipe-info-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.recipe-instructions{
+    background-color: #fff;
+    max-width: 600px;
+    width: 100%;
+    padding: 0 2rem;
+    border-radius: 15px;
+    position: relative;
+    overflow: auto;
+    max-height: 100vh;
+}
+.recipe-instructions h3 {
+    text-align: center;
+}
+
+.recipe-instructions .close {
+    background-color: transparent;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    border: none;
+    /* font-size: 1rem; */
+    /* opacity: 0; */
+    height: 20px;
+    width: 20px;
+    /* cursor: pointer; */
+}
+
 #search {
     background-color: transparent;
     border:none;
