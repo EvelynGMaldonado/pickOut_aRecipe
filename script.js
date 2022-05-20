@@ -58,7 +58,7 @@ function addMeal(mealData, random = false) {
             alert(`${mealData.strMeal} is now part of your favorite meals`);
         }
         // likebtn.classList.toggle("active");
-        favoriteGroup.innerHTML = "";
+        
         favoriteMeals();
         
 
@@ -85,6 +85,7 @@ function getFavoritesFromLocalStorage() {
 }
 
 async function favoriteMeals() {
+    favoriteGroup.innerHTML = "";
     const mealID = getFavoritesFromLocalStorage();
     // const favMealsGroup = [];
     for(let i = 0; i < mealID.length; i++){
@@ -106,8 +107,13 @@ function addMealToFavorites(mealData) {
         <span>
         ${mealData.strMeal}
         </span>
-        <button class="close"></button>
-    `;
-
+        <button class="delete"><img class="delete" alt="" src="./assets/x-circle.svg"></button>
+        `;
+    
+    const deleteBtn = favoriteMeal.querySelector(".delete");
+    deleteBtn.addEventListener("click", () => {
+        removeFavoritesFromLocalStorage(mealData.idMeal);
+        favoriteMeals();
+    });
     favoriteGroup.appendChild(favoriteMeal);
 }
