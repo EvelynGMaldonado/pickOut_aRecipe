@@ -1,6 +1,8 @@
 const meals = document.getElementById("meals");
+const favoriteGroup = document.getElementById("fav-meals")
 
 getRandomMeal();
+favoriteMeals();
 
 async function getRandomMeal() {
     const respRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
@@ -13,8 +15,10 @@ async function getRandomMeal() {
 }
 
 async function getMealById(id) {
-    const mealById = await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id);
-
+    const respById = await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id);
+    const respByIdData = await respById.json();
+    const mealById = respByIdData.meals[0];
+    return mealById;
 }
 async function getMealBySearch(name) {
     const mealByName = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + name);
@@ -54,6 +58,8 @@ function addMeal(mealData, random = false) {
             alert(`${mealData.strMeal} is now part of your favorite meals`);
         }
         // likebtn.classList.toggle("active");
+        favoriteGroup.innerHTML = "";
+        favoriteMeals();
         
 
     });
@@ -76,4 +82,32 @@ function getFavoritesFromLocalStorage() {
     //we get item by key("mealid") from local storage.  
     const mealID = JSON.parse(localStorage.getItem("mealid"));
     return mealID === null ? [] : mealID;
+}
+
+async function favoriteMeals() {
+    const mealID = getFavoritesFromLocalStorage();
+    // const favMealsGroup = [];
+    for(let i = 0; i < mealID.length; i++){
+        const meals = mealID[i];
+        const meal = await getMealById(meals);
+        addMealToFavorites(meal);
+        // favMealsGroup.push(meal);
+    }
+    // console.log("favMealsGroup: ", favMealsGroup);
+
+    //display meals in the browser
+}
+
+function addMealToFavorites(mealData) {
+    console.log("mealData on addMealFavorites: ", mealData);
+    const favoriteMeal = document.createElement("li");
+    favoriteMeal.innerHTML = `
+        <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+        <span>
+        ${mealData.strMeal}
+        </span>
+        <button class="close"></button>
+    `;
+
+    favoriteGroup.appendChild(favoriteMeal);
 }
